@@ -1,208 +1,535 @@
 
-/* PERTEMUAN 3: CSS RESPONSIF SIM-BARANG */
+/* =========================================
+   SIM-BARANG
+   PERTEMUAN 3: DESAIN RESPONSIF & CSS3
+   ========================================= */
 
-/* Box Model */
+/* 1. BOX MODEL */
 * {
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f1f5f9;
-    color: #1e293b;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
     line-height: 1.6;
+    color: #1e293b;
+    background-color: #f1f5f9;
 }
 
-/* Header dengan Flexbox */
+/* =========================================
+   2. HEADER - FLEXBOX
+   ========================================= */
+
 header {
-    background-color: #1d4ed8;
-    color: white;
-    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+
+    margin: 0;
+    padding: 28px 20px;
+    border-bottom: 4px solid #93c5fd;
+
+    color: #ffffff;
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
 }
 
 header h1 {
     margin: 0;
+    font-size: 30px;
+    letter-spacing: 0.5px;
 }
 
 header p {
-    margin-bottom: 0;
+    margin: 6px 0 0;
+    color: #dbeafe;
+    font-size: 15px;
 }
 
-/* Navigasi dengan Flexbox */
+/* =========================================
+   3. NAVIGASI - FLEXBOX
+   ========================================= */
+
 nav {
+    padding: 10px 20px;
+    border-bottom: 1px solid #cbd5e1;
     background-color: #1e3a8a;
-    padding: 12px 16px;
 }
 
 nav ul {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
-    list-style: none;
-    padding: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
     margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li {
+    margin: 0;
+    padding: 0;
 }
 
 nav a {
-    color: white;
-    text-decoration: none;
+    display: block;
+    padding: 9px 15px;
+    border-radius: 6px;
+
+    color: #ffffff;
     font-weight: bold;
+    text-decoration: none;
+
+    transition: background-color 0.2s ease;
 }
 
-nav a:hover {
-    text-decoration: underline;
+nav a:hover,
+nav a:focus {
+    color: #ffffff;
+    background-color: #2563eb;
 }
 
-/* Konten utama */
+/* =========================================
+   4. AREA UTAMA - CSS GRID
+   ========================================= */
+
 main {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
     gap: 24px;
-    padding: 20px;
+
+    width: 100%;
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
+    padding: 24px;
 }
 
+/* Kartu setiap bagian */
 section {
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #dbe3ee;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px #0000000d;
     min-width: 0;
+    margin: 0;
+    padding: 24px;
+    border: 1px solid #dbe3ee;
+    border-radius: 12px;
+
+    background-color: #ffffff;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
 }
 
-h2 {
+section h2 {
+    margin: 0 0 18px;
     color: #1d4ed8;
-    margin-top: 0;
+    font-size: 21px;
+    line-height: 1.4;
 }
 
-/* Tabel inventaris */
+/* =========================================
+   5. PENCARIAN BARANG
+   ========================================= */
+
+#cariBarang {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 8px 0 16px;
+    padding: 11px 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+
+    background-color: #ffffff;
+    color: #1e293b;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+#cariBarang:focus {
+    outline: 2px solid #bfdbfe;
+    border-color: #2563eb;
+}
+
+/* =========================================
+   6. TABEL INVENTARIS
+   ========================================= */
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 12px;
+    overflow-x: auto;
+
+    border: 1px solid #d1dbe8;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+/* Tabel utama */
 table {
     width: 100%;
+    min-width: 520px;
     border-collapse: collapse;
-    background-color: white;
+    table-layout: fixed;
+
+    background-color: #ffffff;
+    font-size: 14px;
 }
 
+/* Header dan isi tabel */
 th,
 td {
-    border: 1px solid #cbd5e1;
-    padding: 10px;
+    padding: 13px 12px;
+    border-bottom: 1px solid #e2e8f0;
+
     text-align: left;
-    overflow-wrap: anywhere;
+    vertical-align: middle;
+    overflow-wrap: break-word;
 }
 
+/* Judul kolom */
 th {
     background-color: #dbeafe;
     color: #1e3a8a;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: normal;
 }
 
+/* Lebar masing-masing kolom */
+th:nth-child(1),
+td:nth-child(1) {
+    width: 18%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    width: 25%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+    width: 20%;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+    width: 12%;
+    text-align: center;
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+    width: 25%;
+}
+
+/* Warna baris selang-seling */
 tbody tr:nth-child(even) {
     background-color: #f8fafc;
 }
 
-/* Formulir */
-form {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
+/* Efek ketika kursor diarahkan ke baris */
+tbody tr:hover {
+    background-color: #eff6ff;
 }
 
-form p {
+/* Hilangkan garis bawah pada baris terakhir */
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Pesan ketika hasil pencarian kosong */
+.pesan-kosong {
+    margin-top: 12px;
+    color: #64748b;
+    font-style: italic;
+}
+
+/* =========================================
+   7. FORM TAMBAH BARANG - CSS GRID
+   ========================================= */
+
+form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
     margin: 0;
 }
 
+/* Setiap kelompok label dan input */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    margin: 0;
+}
+
+.form-group label {
+    color: #334155;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Input dan dropdown */
 input,
 select {
+    display: block;
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #94a3b8;
-    border-radius: 5px;
-    font-size: 16px;
+    min-width: 0;
+    min-height: 43px;
+    margin: 0;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+
+    background-color: #ffffff;
+    color: #1e293b;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+input::placeholder {
+    color: #94a3b8;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid #bfdbfe;
+    border-color: #2563eb;
+}
+
+/* Tombol form */
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
 }
 
 button {
-    padding: 11px 16px;
-    border: none;
-    border-radius: 5px;
+    min-height: 42px;
+    padding: 10px 17px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+
     background-color: #2563eb;
-    color: white;
-    font-size: 16px;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
+
+    transition: background-color 0.2s ease;
 }
 
 button:hover {
     background-color: #1e40af;
 }
 
-button[type="reset"] {
+button:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 2px;
+}
+
+button.btn-reset {
     background-color: #64748b;
 }
 
-/* Footer */
-footer {
-    background-color: #1e3a8a;
-    color: white;
-    text-align: center;
-    padding: 16px;
-    margin-top: 20px;
+button.btn-reset:hover {
+    background-color: #475569;
 }
 
-/* MOBILE: layar di bawah 600px */
+/* Notifikasi setelah barang ditambahkan */
+#notifikasiBarang {
+    margin: 14px 0 0;
+    color: #166534;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* =========================================
+   8. FOOTER
+   ========================================= */
+
+footer {
+    margin-top: 20px;
+    padding: 18px 16px;
+    border-top: 4px solid #93c5fd;
+
+    background-color: #1e3a8a;
+    color: #ffffff;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 13px;
+}
+
+/* =========================================
+   9. MOBILE - DI BAWAH 600px
+   Gaya dasar menggunakan pendekatan mobile-first
+   ========================================= */
+
 @media (max-width: 599px) {
+    header {
+        padding: 22px 14px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    header p {
+        font-size: 13px;
+    }
+
+    nav {
+        padding: 8px;
+    }
+
+    nav ul {
+        gap: 5px;
+    }
+
+    nav a {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
     main {
-        padding: 12px;
+        grid-template-columns: minmax(0, 1fr);
         gap: 16px;
+        padding: 12px;
     }
 
     section {
-        padding: 12px;
+        padding: 15px;
+        border-radius: 9px;
+    }
+
+    section h2 {
+        font-size: 19px;
+        margin-bottom: 14px;
+    }
+
+    #cariBarang {
+        max-width: 100%;
+        font-size: 16px;
+    }
+
+    .table-container {
+        border-radius: 6px;
     }
 
     table {
+        min-width: 520px;
         font-size: 12px;
     }
 
     th,
     td {
-        padding: 6px;
+        padding: 10px 9px;
     }
 
-    nav ul {
-        gap: 12px;
+    th {
+        font-size: 12px;
+    }
+
+    form {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 13px;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .form-actions button {
+        flex: 1;
+        padding: 10px;
+    }
+
+    footer {
+        padding: 15px 10px;
     }
 }
 
-/* TABLET: 600px sampai 1024px */
+/* =========================================
+   10. TABLET - 600px SAMPAI 1024px
+   ========================================= */
+
 @media (min-width: 600px) and (max-width: 1024px) {
     main {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+        padding: 22px;
+    }
+
+    section {
+        padding: 22px;
+    }
+
+    form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .form-actions {
+        grid-column: 1 / -1;
+    }
+
+    .table-container {
+        width: 100%;
+    }
+
+    table {
+        min-width: 520px;
+    }
+}
+
+/* =========================================
+   11. DESKTOP - DI ATAS 1024px
+   ========================================= */
+
+@media (min-width: 1025px) {
+    main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        padding: 28px 24px;
+    }
+
+    section {
         padding: 24px;
     }
 
     form {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
     }
 
-    form button {
-        align-self: end;
-    }
-}
-
-/* DESKTOP: di atas 1024px */
-@media (min-width: 1025px) {
-    main {
-        grid-template-columns: 1fr 1fr;
-        align-items: start;
-        gap: 24px;
+    .form-actions {
+        grid-column: 1 / -1;
     }
 
-    section {
-        padding: 24px;
+    table {
+        min-width: 0;
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 11px 8px;
     }
 }

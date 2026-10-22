@@ -4,100 +4,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIM-Barang - Inventaris Barang</title>
+    <title>SIM-Barang - Sistem Inventaris Barang</title>
     <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <h1>SIM-Barang</h1>
-        <p>Sistem Informasi Inventaris Barang Jurusan</p>
+        <p>Sistem Informasi Manajemen Inventaris Barang</p>
     </header>
 
-    <!-- Navigasi -->
-    <nav>
+    <nav aria-label="Navigasi utama">
         <ul>
-            <li><a href="#inventaris">Data Inventaris</a></li>
-            <li><a href="#form-barang">Input Barang</a></li>
+            <li><a href="#inventaris">Daftar Inventaris</a></li>
+            <li><a href="#form-barang">Tambah Barang</a></li>
         </ul>
     </nav>
 
-    <!-- Konten utama -->
     <main>
-
-        <!-- Bagian 1: Tabel Inventaris Barang -->
         <section id="inventaris">
             <h2>Tabel Inventaris Barang</h2>
 
-            <table border="1" cellpadding="8" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Kode</th>
-                        <th>Nama Barang</th>
-                        <th>Kategori</th>
-                        <th>Jumlah</th>
-                        <th>Kondisi</th>
-                    </tr>
-                </thead>
+            <label for="cariBarang">Cari barang:</label>
+            <input
+                type="search"
+                id="cariBarang"
+                placeholder="Cari kode atau nama barang..."
+            >
 
-                <tbody id="tabelBarang">
-                    <tr>
-                        <td>BRG-001</td>
-                        <td>Laptop</td>
-                        <td>Elektronik</td>
-                        <td>10</td>
-                        <td>Baik</td>
-                    </tr>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Kode</th>
+                            <th scope="col">Nama Barang</th>
+                            <th scope="col">Kategori</th>
+                            <th scope="col">Jumlah</th>
+                            <th scope="col">Kondisi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelBarang">
+                        <tr>
+                            <td>BRG-001</td>
+                            <td>Laptop</td>
+                            <td>Elektronik</td>
+                            <td>10</td>
+                            <td>Baik</td>
+                        </tr>
+                        <tr>
+                            <td>BRG-002</td>
+                            <td>Proyektor</td>
+                            <td>Elektronik</td>
+                            <td>4</td>
+                            <td>Baik</td>
+                        </tr>
+                        <tr>
+                            <td>BRG-003</td>
+                            <td>Meja</td>
+                            <td>Furniture</td>
+                            <td>15</td>
+                            <td>Perlu Perbaikan</td>
+                        </tr>
+                        <tr>
+                            <td>BRG-004</td>
+                            <td>Kursi</td>
+                            <td>Furniture</td>
+                            <td>20</td>
+                            <td>Baik</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-                    <tr>
-                        <td>BRG-002</td>
-                        <td>Proyektor</td>
-                        <td>Elektronik</td>
-                        <td>4</td>
-                        <td>Baik</td>
-                    </tr>
-
-                    <tr>
-                        <td>BRG-003</td>
-                        <td>Meja</td>
-                        <td>Furniture</td>
-                        <td>15</td>
-                        <td>Perlu Perbaikan</td>
-                    </tr>
-
-                    <tr>
-                        <td>BRG-004</td>
-                        <td>Kursi</td>
-                        <td>Furniture</td>
-                        <td>20</td>
-                        <td>Baik</td>
-                    </tr>
-                </tbody>
-            </table>
+            <p id="pesanKosong" class="pesan-kosong" hidden>
+                Barang tidak ditemukan.
+            </p>
         </section>
 
-        <!-- Bagian 2: Formulir Input Barang -->
         <section id="form-barang">
-            <h2>Formulir Input Barang</h2>
+            <h2>Form Tambah Barang</h2>
 
             <form id="formBarang">
-
-                <p>
-                    <label for="kode">Kode Barang:</label><br>
+                <div class="form-group">
+                    <label for="kode">Kode Barang</label>
                     <input
                         type="text"
                         id="kode"
                         name="kode"
                         placeholder="Contoh: BRG-005"
                         pattern="BRG-[0-9]+"
-                        title="Kode harus diawali BRG- diikuti angka, contoh BRG-005"
+                        title="Kode harus menggunakan format BRG- diikuti angka, contoh BRG-005."
                         required
                     >
-                </p>
+                </div>
 
-                <p>
-                    <label for="nama">Nama Barang:</label><br>
+                <div class="form-group">
+                    <label for="nama">Nama Barang</label>
                     <input
                         type="text"
                         id="nama"
@@ -105,115 +108,55 @@
                         placeholder="Masukkan nama barang"
                         required
                     >
-                </p>
+                </div>
 
-                <p>
-                    <label for="kategori">Kategori:</label><br>
+                <div class="form-group">
+                    <label for="kategori">Kategori</label>
                     <select id="kategori" name="kategori" required>
                         <option value="">-- Pilih Kategori --</option>
                         <option value="Elektronik">Elektronik</option>
                         <option value="Furniture">Furniture</option>
-                        <option value="Peralatan">Peralatan</option>
+                        <option value="Alat Tulis">Alat Tulis</option>
+                        <option value="Lainnya">Lainnya</option>
                     </select>
-                </p>
+                </div>
 
-                <p>
-                    <label for="jumlah">Jumlah Barang:</label><br>
+                <div class="form-group">
+                    <label for="jumlah">Jumlah Barang</label>
                     <input
                         type="number"
                         id="jumlah"
                         name="jumlah"
+                        placeholder="Masukkan jumlah"
                         min="1"
                         step="1"
-                        placeholder="Masukkan jumlah barang"
                         required
                     >
-                </p>
+                </div>
 
-                <p>
-                    <label for="kondisi">Kondisi Barang:</label><br>
+                <div class="form-group">
+                    <label for="kondisi">Kondisi Barang</label>
                     <select id="kondisi" name="kondisi" required>
                         <option value="">-- Pilih Kondisi --</option>
                         <option value="Baik">Baik</option>
                         <option value="Perlu Perbaikan">Perlu Perbaikan</option>
                         <option value="Rusak">Rusak</option>
                     </select>
-                </p>
+                </div>
 
-                <button type="submit">Simpan Barang</button>
-                <button type="reset">Reset</button>
-
+                <div class="form-actions">
+                    <button type="submit">Simpan Barang</button>
+                    <button type="reset" class="btn-reset">Reset</button>
+                </div>
             </form>
-        </section>
 
+            <p id="notifikasiBarang" role="status" aria-live="polite"></p>
+        </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 SIM-Barang | Praktikum Pemrograman Web</p>
     </footer>
-
-    <!-- JavaScript untuk menambahkan barang -->
-    <script>
-        const form = document.getElementById("formBarang");
-        const tabel = document.getElementById("tabelBarang");
-
-        form.addEventListener("submit", function(event) {
-            // Mencegah halaman dimuat ulang
-            event.preventDefault();
-
-            // Mengambil nilai dari formulir
-            const kode = form.elements["kode"].value.trim().toUpperCase();
-            const nama = form.elements["nama"].value.trim();
-            const kategori = form.elements["kategori"].value;
-            const jumlah = form.elements["jumlah"].value;
-            const kondisi = form.elements["kondisi"].value;
-
-            // Memeriksa format kode barang
-            if (!/^BRG-[0-9]+$/.test(kode)) {
-                alert("Format kode salah! Contoh: BRG-005");
-                return;
-            }
-
-            // Memastikan jumlah berupa bilangan bulat positif
-            if (!Number.isInteger(Number(jumlah)) || Number(jumlah) < 1) {
-                alert("Jumlah barang harus bilangan bulat minimal 1!");
-                return;
-            }
-
-            // Memeriksa kode barang duplikat
-            for (let i = 0; i < tabel.rows.length; i++) {
-                const kodeLama = tabel.rows[i].cells[0].textContent.trim();
-
-                if (kodeLama === kode) {
-                    alert("Kode barang sudah digunakan!");
-                    return;
-                }
-            }
-
-            // Membuat baris baru
-            const baris = tabel.insertRow();
-            const dataBarang = [
-                kode,
-                nama,
-                kategori,
-                jumlah,
-                kondisi
-            ];
-
-            // Mengisi kolom tabel
-            dataBarang.forEach(function(nilai) {
-                const kolom = baris.insertCell();
-                kolom.textContent = nilai;
-            });
-
-            // Menampilkan pesan berhasil
-            alert("Barang berhasil ditambahkan ke tabel!");
-
-            // Mengosongkan formulir
-            form.reset();
-        });
-    </script>
 
 </body>
 </html>
