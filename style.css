@@ -1,0 +1,208 @@
+
+/* PERTEMUAN 3: CSS RESPONSIF SIM-BARANG */
+
+/* Box Model */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+/* Header dengan Flexbox */
+header {
+    background-color: #1d4ed8;
+    color: white;
+    padding: 24px 16px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header p {
+    margin-bottom: 0;
+}
+
+/* Navigasi dengan Flexbox */
+nav {
+    background-color: #1e3a8a;
+    padding: 12px 16px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Konten utama */
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+section {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #dbe3ee;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #0000000d;
+    min-width: 0;
+}
+
+h2 {
+    color: #1d4ed8;
+    margin-top: 0;
+}
+
+/* Tabel inventaris */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th,
+td {
+    border: 1px solid #cbd5e1;
+    padding: 10px;
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+th {
+    background-color: #dbeafe;
+    color: #1e3a8a;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+/* Formulir */
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+form p {
+    margin: 0;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #94a3b8;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 11px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1e40af;
+}
+
+button[type="reset"] {
+    background-color: #64748b;
+}
+
+/* Footer */
+footer {
+    background-color: #1e3a8a;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    margin-top: 20px;
+}
+
+/* MOBILE: layar di bawah 600px */
+@media (max-width: 599px) {
+    main {
+        padding: 12px;
+        gap: 16px;
+    }
+
+    section {
+        padding: 12px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 6px;
+    }
+
+    nav ul {
+        gap: 12px;
+    }
+}
+
+/* TABLET: 600px sampai 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    main {
+        grid-template-columns: 1fr;
+        padding: 24px;
+    }
+
+    form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    form button {
+        align-self: end;
+    }
+}
+
+/* DESKTOP: di atas 1024px */
+@media (min-width: 1025px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+        gap: 24px;
+    }
+
+    section {
+        padding: 24px;
+    }
+}
