@@ -5,10 +5,11 @@ const form = document.getElementById("formBarang");
 const notifikasi = document.getElementById("notifikasiBarang");
 const pesanKosong = document.getElementById("pesanKosong");
 
-// FITUR PENCARIAN BARANG
-pencarian.addEventListener("input", function () {
-    tampilkanHasilPencarian();
-});
+// ==================================
+// 1. PENCARIAN BARANG SECARA LANGSUNG
+// ==================================
+
+pencarian.addEventListener("input", tampilkanHasilPencarian);
 
 function tampilkanHasilPencarian() {
     const kataKunci = pencarian.value.toLowerCase().trim();
@@ -28,8 +29,12 @@ function tampilkanHasilPencarian() {
     pesanKosong.hidden = jumlahTampil > 0;
 }
 
-// FITUR TAMBAH BARANG
+// ==================================
+// 2. VALIDASI DAN TAMBAH BARANG
+// ==================================
+
 form.addEventListener("submit", function (event) {
+    // Mencegah halaman dimuat ulang
     event.preventDefault();
 
     const kode = document.getElementById("kode").value.trim();
@@ -38,30 +43,37 @@ form.addEventListener("submit", function (event) {
     const jumlah = document.getElementById("jumlah").value;
     const kondisi = document.getElementById("kondisi").value;
 
-    // Validasi kode barang
+    // Validasi format kode: BRG-001, BRG-002, dst.
     if (!/^BRG-\d+$/.test(kode)) {
-        alert("Kode barang harus berformat BRG- diikuti angka, contoh BRG-005.");
+        alert("Format kode salah! Contoh yang benar: BRG-005.");
+        document.getElementById("kode").focus();
         return;
     }
 
-    // Validasi jumlah barang
-    if (Number(jumlah) <= 0 || !Number.isInteger(Number(jumlah))) {
-        alert("Jumlah barang harus berupa bilangan bulat lebih dari 0.");
+    // Validasi jumlah harus bilangan bulat positif
+    if (
+        jumlah === "" ||
+        !Number.isInteger(Number(jumlah)) ||
+        Number(jumlah) <= 0
+    ) {
+        alert("Jumlah harus berupa bilangan bulat lebih dari 0.");
+        document.getElementById("jumlah").focus();
         return;
     }
 
-    // Cek apakah kode sudah digunakan
+    // Cegah kode barang yang sama
     const kodeSudahAda = Array.from(tabel.rows).some(function (baris) {
         return baris.cells[0].textContent.trim().toLowerCase()
             === kode.toLowerCase();
     });
 
     if (kodeSudahAda) {
-        alert("Kode barang sudah ada. Gunakan kode yang berbeda.");
+        alert("Kode barang sudah digunakan. Silakan gunakan kode lain.");
+        document.getElementById("kode").focus();
         return;
     }
 
-    // Membuat baris baru
+    // Buat baris baru pada tabel
     const barisBaru = tabel.insertRow();
 
     [kode, nama, kategori, jumlah, kondisi].forEach(function (isi) {
@@ -69,10 +81,14 @@ form.addEventListener("submit", function (event) {
         sel.textContent = isi;
     });
 
-    // Reset pencarian agar barang baru terlihat
+    // Kosongkan pencarian supaya baris baru terlihat
     pencarian.value = "";
     tampilkanHasilPencarian();
 
-    notifikasi.textContent = "Barang " + nama + " berhasil ditambahkan!";
+    // Tampilkan notifikasi keberhasilan
+    notifikasi.textContent =
+        "Barang " + nama + " berhasil ditambahkan!";
+
+    // Kosongkan form setelah berhasil
     form.reset();
 });
